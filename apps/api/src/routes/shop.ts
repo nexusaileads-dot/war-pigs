@@ -30,13 +30,13 @@ export async function shopRoutes(fastify: FastifyInstance) {
       characters: characters.map(c => ({
         ...c,
         owned: ownedIds.has(c.characterId),
-        canAfford: (profile?.currentWpigs || 0) >= c.priceWpigs,
+        canAfford: (profile?.currentPigs || 0) >= c.pricePigs,
         canUnlock: (profile?.level || 1) >= c.unlockLevel
       })),
       weapons: weapons.map(w => ({
         ...w,
         owned: ownedIds.has(w.weaponId),
-        canAfford: (profile?.currentWpigs || 0) >= w.priceWpigs,
+        canAfford: (profile?.currentPigs || 0) >= w.pricePigs,
         canUnlock: (profile?.level || 1) >= w.unlockLevel
       }))
     };
@@ -87,8 +87,8 @@ export async function shopRoutes(fastify: FastifyInstance) {
     }
 
     // Check balance
-    if (profile.currentWpigs < item.priceWpigs) {
-      return reply.status(400).send({ error: 'Insufficient WPIGS' });
+    if (profile.currentPigs < item.pricePigs) {
+      return reply.status(400).send({ error: 'Insufficient PIGS' });
     }
 
     // Transaction
@@ -97,7 +97,7 @@ export async function shopRoutes(fastify: FastifyInstance) {
         // Deduct currency
         await tx.profile.update({
           where: { userId: request.user!.userId },
-          data: { currentWpigs: { decrement: item.priceWpigs } }
+          data: { currentPigs: { decrement: item.pricePigs } }
         });
 
         // Add to inventory
@@ -115,7 +115,7 @@ export async function shopRoutes(fastify: FastifyInstance) {
           data: {
             userId: request.user!.userId,
             type: 'SPEND',
-            amount: -item.priceWpigs,
+            amount: -item.pricePigs,
             description: `Purchased ${item.name}`,
             referenceId: itemId
           }
@@ -128,4 +128,4 @@ export async function shopRoutes(fastify: FastifyInstance) {
       return reply.status(500).send({ error: 'Purchase failed' });
     }
   });
-        }
+            }
