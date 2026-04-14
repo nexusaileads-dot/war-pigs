@@ -17,8 +17,8 @@ export const Profile: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       <div style={{ background: '#222', padding: '15px', borderRadius: '8px', marginTop: '20px' }}>
         <p>Level: {profileData.profile.level}</p>
         <p>XP: {profileData.profile.xp}</p>
-        <p>$WPIGS: {profileData.profile.currentWpigs}</p>
-        <p>Total Earned: {profileData.profile.totalWpigsEarned}</p>
+        <p>$PIGS: {profileData.profile.currentPigs}</p>
+        <p>Total Earned: {profileData.profile.totalPigsEarned}</p>
       </div>
       <div style={{ background: '#222', padding: '15px', borderRadius: '8px', marginTop: '20px' }}>
         <h3>Combat Stats</h3>
@@ -29,3 +29,4 @@ export const Profile: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     </div>
   );
 };
+          
