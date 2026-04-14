@@ -34,8 +34,8 @@ model Profile {
   
   level           Int      @default(1)
   xp              Int      @default(0)
-  totalWpigsEarned Int     @default(0)
-  currentWpigs    Int     @default(0)
+  totalPigsEarned Int     @default(0)
+  currentPigs     Int     @default(0)
   
   equippedCharacterId String?
   equippedWeaponId    String?
@@ -70,7 +70,7 @@ model Character {
   baseSpeed   Float
   passiveAbility String
   
-  priceWpigs  Int
+  pricePigs   Int
   unlockLevel Int      @default(1)
   rarity      String   @default("COMMON") // COMMON, RARE, EPIC, LEGENDARY
   
@@ -94,7 +94,7 @@ model Weapon {
   cooldown    Float    // seconds between shots
   ammoCapacity Int     @default(0) // 0 = infinite/no reload
   
-  priceWpigs  Int
+  pricePigs   Int
   unlockLevel Int      @default(1)
   rarity      String   @default("COMMON")
   
