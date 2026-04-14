@@ -23,7 +23,7 @@ export interface RewardBreakdown {
 }
 
 export class RewardCalculator {
-  private readonly BASE_WPIGS_PER_KILL = 5;
+  private readonly BASE_PIGS_PER_KILL = 5;
   private readonly ACCURACY_THRESHOLD = 0.8;
   private readonly ACCURACY_BONUS = 50;
   private readonly SPEED_THRESHOLD = 300; // 5 minutes
@@ -36,7 +36,7 @@ export class RewardCalculator {
     const baseReward = stats.wavesCleared * 50 * stats.difficulty;
     
     // Kill bonus
-    const killBonus = stats.kills * this.BASE_WPIGS_PER_KILL;
+    const killBonus = stats.kills * this.BASE_PIGS_PER_KILL;
     
     // Accuracy bonus
     const accuracyBonus = stats.accuracy >= this.ACCURACY_THRESHOLD ? this.ACCURACY_BONUS : 0;
@@ -100,5 +100,4 @@ export class RewardCalculator {
     
     return { valid: true };
   }
-      }
-      
+}
